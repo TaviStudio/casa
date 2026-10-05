@@ -140,7 +140,7 @@
     .nav {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 25px;
     }
 
@@ -158,6 +158,26 @@
       padding: 10px 17px;
       border-radius: 999px;
     }
+
+    .menu-toggle, .nav-legal { display: none; }
+
+    .menu-toggle {
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--blue);
+      background: white;
+      cursor: pointer;
+    }
+
+    .menu-toggle svg { width: 24px; height: 24px; }
+    .menu-close { display: none; }
+    .menu-toggle[aria-expanded="true"] .menu-open { display: none; }
+    .menu-toggle[aria-expanded="true"] .menu-close { display: inline; }
 
     .hero {
       padding: 70px 0 76px;
@@ -603,9 +623,10 @@
       color: var(--blue);
       font-size: 18px;
       font-weight: 700;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 6px;
+      text-decoration: none;
     }
+
+    .contact-email:hover { color: var(--blue-dark); }
 
     .legal-area {
       padding-block: 70px;
@@ -736,24 +757,58 @@
       .container { width: calc(100% - 36px); }
 
       .header-inner {
-        padding-block: 14px;
-        min-height: auto;
-        align-items: flex-start;
-        gap: 16px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        min-height: 72px;
+        padding-block: 12px;
+        gap: 0;
       }
 
       .brand-letters { font-size: 29px; }
       .brand-house { width: 29px; height: 29px; }
 
+      .nav-ready .menu-toggle { display: inline-flex; }
+
       .nav {
-        justify-content: flex-end;
-        gap: 8px 16px;
+        grid-column: 1 / -1;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        padding-top: 12px;
       }
 
-      .nav a { font-size: 12px; }
-      .nav .nav-contact { padding: 5px 10px; }
+      .nav-ready .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 12px 18px 18px;
+        max-height: calc(100dvh - 72px);
+        overflow-y: auto;
+        background: var(--paper);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 14px 24px rgba(23, 33, 57, .08);
+      }
 
-      .hero { padding: 45px 0 50px; }
+      .nav-ready .nav.is-open { display: flex; }
+      .nav a { font-size: 15px; padding: 12px 14px; border-radius: 10px; }
+      .nav a:hover { background: var(--soft); }
+      .nav .nav-contact { padding: 12px 14px; border-radius: 10px; }
+
+      .nav-legal {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-top: 8px;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+      }
+
+      .nav-legal a { color: var(--muted); font-size: 14px; }
+      .hero { padding: 32px 0 50px; }
+      #hero-title { margin-top: 0; }
 
       .hero-grid,
       .app-grid,
@@ -855,10 +910,24 @@
         </svg>
       </a>
 
-      <nav class="nav" aria-label="Navigare principală">
+      <button class="menu-toggle" type="button"
+              aria-controls="primary-navigation" aria-expanded="false"
+              aria-label="Deschide meniul">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path class="menu-open" d="M4 6h16M4 12h16M4 18h16"/>
+          <path class="menu-close" d="m6 6 12 12M18 6 6 18"/>
+        </svg>
+      </button>
+
+      <nav class="nav" id="primary-navigation" aria-label="Navigare principală">
         <a href="#cum-functioneaza">Cum funcționează</a>
-        <a href="#profesionisti">Pentru profesioniști</a>
+        <a href="#profesionisti">Oferi servicii?</a>
         <a href="#suport" class="nav-contact">Contact</a>
+        <div class="nav-legal">
+          <a href="#confidentialitate">Confidențialitate</a>
+          <a href="#termeni">Termeni și condiții</a>
+        </div>
       </nav>
     </div>
   </header>
@@ -934,7 +1003,7 @@
       <div class="container">
         <div class="section-intro">
           <span class="eyebrow">De la idee la primul contact</span>
-          <h2 id="steps-title">Mai puțini pași.<br>Mai multă claritate.</h2>
+          <h2 id="steps-title">Puțini pași.<br>Mai multă claritate.</h2>
           <p>
             CASA aduce căutarea și comunicarea într-o experiență
             gândită pentru lucrurile de care casa ta are nevoie.
@@ -1132,7 +1201,8 @@
     <section class="section" aria-labelledby="faq-title">
       <div class="container faq-grid">
         <div>
-          <h2 id="faq-title">Întrebări<br>frecvente</h2>
+          <span class="eyebrow">Întrebări frecvente</span>
+          <h2 id="faq-title" style="margin-top:20px">Informații utile</h2>
         </div>
 
         <div>
@@ -1707,6 +1777,38 @@
   </footer>
 
   <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const primaryNavigation = document.getElementById("primary-navigation");
+    const mobileLayout = window.matchMedia("(max-width: 700px)");
+
+    function setMenuOpen(open) {
+      primaryNavigation.classList.toggle("is-open", open);
+      menuToggle.setAttribute("aria-expanded", String(open));
+      menuToggle.setAttribute("aria-label", open ? "Închide meniul" : "Deschide meniul");
+    }
+
+    menuToggle.addEventListener("click", () => {
+      setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    primaryNavigation.addEventListener("click", event => {
+      if (event.target.closest("a")) setMenuOpen(false);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".header")) setMenuOpen(false);
+    });
+
+    mobileLayout.addEventListener("change", () => setMenuOpen(false));
+    document.documentElement.classList.add("nav-ready");
+
     // Nu folosește cookies, analytics sau stocare în browser.
     document.getElementById("year").textContent =
       new Date().getFullYear();
