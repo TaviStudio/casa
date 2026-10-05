@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>CASA — Servicii pentru casa ta</title>
+  <meta name="description"
+        content="CASA te ajută să descoperi profesioniști pentru casa ta, să explorezi serviciile disponibile și să iei legătura direct cu ei.">
+
+  <!-- Elimină noindex numai după finalizarea informațiilor juridice. -->
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#031AC7">
+
+  <meta property="og:title" content="CASA — Servicii pentru casa ta">
+  <meta property="og:description"
+        content="O casă mai bine îngrijită începe cu oamenii potriviți.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ro_RO">
+
+  <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M6 43L47 7Q50 4 53 7L94 43' fill='none' stroke='%23031AC7' stroke-width='8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M19 48L50 21L81 48V88Q81 94 75 94H25Q19 94 19 88ZM40 65V87H60V65Z' fill='%23031AC7' fill-rule='evenodd'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --blue: #031ac7;
+      --blue-dark: #071578;
+      --ink: #172139;
+      --muted: #626c7c;
+      --line: #e4e8ef;
+      --paper: #ffffff;
+      --soft: #f5f7fb;
+      --warm: #f4f1eb;
+      --radius: 24px;
+      --width: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    button, input, textarea { font: inherit; }
+
+    :focus-visible {
+      outline: 3px solid #8197ff;
+      outline-offset: 5px;
+      border-radius: 5px;
+    }
+
+    ::selection {
+      background: #dce3ff;
+      color: var(--blue-dark);
+    }
+
+    .container {
+      width: min(var(--width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: fixed;
+      top: -100px;
+      left: 20px;
+      z-index: 100;
+      padding: 12px 20px;
+      color: white;
+      background: var(--blue);
+      border-radius: 10px;
+    }
+
+    .skip-link:focus { top: 12px; }
+
+    .svg-library {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 86px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      color: var(--blue);
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .brand-letters {
+      font-size: 34px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+
+    .brand-house {
+      width: 34px;
+      height: 34px;
+      margin-left: 1px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 25px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .nav a:hover { color: var(--blue); }
+
+    .nav .nav-contact {
+      color: var(--blue);
+      background: #edf0ff;
+      padding: 10px 17px;
+      border-radius: 999px;
+    }
+
+    .hero {
+      padding: 70px 0 76px;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 58px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      font-size: clamp(43px, 5.4vw, 70px);
+      font-weight: 750;
+      margin: 24px 0;
+    }
+
+    h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    h2 {
+      font-size: clamp(31px, 3.8vw, 46px);
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-size: 23px;
+      margin-bottom: 13px;
+    }
+
+    p { margin: 0 0 18px; }
+
+    .lead {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 510px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 13px 22px;
+      border-radius: 13px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 650;
+      transition: transform .18s ease, background .18s ease;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button-primary {
+      color: white;
+      background: var(--blue);
+    }
+
+    .button-primary:hover { background: var(--blue-dark); }
+
+    .button-secondary {
+      background: white;
+      border-color: var(--line);
+    }
+
+    .availability {
+      margin-top: 24px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-visual {
+      position: relative;
+      padding: 0 35px 35px 0;
+    }
+
+    .hero-photo {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: 64% center;
+      border-radius: 32px;
+      background: var(--warm);
+    }
+
+    .photo-note {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.9);
+      color: var(--ink);
+      font-size: 11px;
+    }
+
+    .visual-card {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      width: min(340px, 88%);
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 19px;
+      background: white;
+      box-shadow: 0 20px 60px rgba(23,33,57,.1);
+    }
+
+    .visual-icon {
+      width: 45px;
+      height: 45px;
+      padding: 9px;
+      color: var(--blue);
+      background: #edf0ff;
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+
+    .visual-card strong {
+      display: block;
+      line-height: 1.3;
+    }
+
+    .visual-card span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .principles {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--soft);
+    }
+
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      padding-block: 25px;
+    }
+
+    .principle strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .principle span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section { padding-block: 88px; }
+
+    .section-intro {
+      max-width: 630px;
+      margin-bottom: 38px;
+    }
+
+    .section-intro .eyebrow { margin-bottom: 17px; }
+
+    .section-intro p { color: var(--muted); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .step {
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .step-number {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 25px;
+      border-radius: 13px;
+      background: #eef1ff;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    .categories-section { background: var(--soft); }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .category {
+      min-height: 132px;
+      padding: 23px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    .category-mark {
+      display: block;
+      width: 29px;
+      height: 5px;
+      margin-bottom: 22px;
+      border-radius: 5px;
+      background: var(--blue);
+    }
+
+    .category:nth-child(2) .category-mark { background: #dd974a; }
+    .category:nth-child(3) .category-mark { background: #5a917f; }
+    .category:nth-child(4) .category-mark { background: #a178bb; }
+    .category:nth-child(5) .category-mark { background: #6e9fc4; }
+    .category:nth-child(6) .category-mark { background: #b97868; }
+    .category:nth-child(7) .category-mark { background: #69977a; }
+    .category:nth-child(8) .category-mark { background: #9590c1; }
+
+    .category strong {
+      display: block;
+      line-height: 1.35;
+      font-size: 16px;
+    }
+
+    .category span {
+      display: block;
+      margin-top: 5px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 22px;
+    }
+
+    .app-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 90px;
+      align-items: center;
+    }
+
+    .phone-stage {
+      padding: 36px;
+      background: var(--warm);
+      border-radius: 32px;
+      text-align: center;
+    }
+
+    .phone {
+      width: min(258px, 100%);
+      margin: 0 auto;
+      padding: 8px;
+      background: #152038;
+      border-radius: 38px;
+      box-shadow: 0 24px 55px rgba(23,33,57,.18);
+    }
+
+    .phone img {
+      width: 100%;
+      border-radius: 30px;
+    }
+
+    .phone-caption {
+      display: block;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 30px 0;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      margin-bottom: 18px;
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      display: grid;
+      place-items: center;
+      width: 23px;
+      height: 23px;
+      margin-top: 3px;
+      border-radius: 50%;
+      background: #edf0ff;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .feature-list strong { display: block; }
+
+    .feature-list span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .professional {
+      background: var(--blue-dark);
+      color: white;
+      border-radius: 30px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .professional .eyebrow { color: #bcc8ff; }
+
+    .professional h2 {
+      margin-top: 18px;
+      font-size: clamp(30px, 3vw, 42px);
+    }
+
+    .professional p { color: #d5dcff; }
+
+    .professional-aside {
+      padding: 26px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 20px;
+    }
+
+    .professional-aside p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .professional .button {
+      background: white;
+      color: var(--blue-dark);
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+      padding: 19px 0;
+    }
+
+    .faq-item:first-child { padding-top: 0; }
+
+    summary {
+      cursor: pointer;
+      font-weight: 650;
+    }
+
+    .faq-item summary {
+      font-size: 16px;
+      padding-right: 15px;
+    }
+
+    .faq-item p {
+      padding-top: 15px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+
+    .contact-section { background: var(--soft); }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .contact-box h2 { margin-bottom: 15px; }
+
+    .contact-box p {
+      margin-bottom: 0;
+      color: var(--muted);
+      max-width: 580px;
+    }
+
+    .contact-email {
+      white-space: nowrap;
+      color: var(--blue);
+      font-size: 18px;
+      font-weight: 700;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 6px;
+    }
+
+    .legal-area {
+      padding-block: 70px;
+      border-top: 1px solid var(--line);
+    }
+
+    .legal-intro {
+      max-width: 750px;
+      margin-bottom: 25px;
+    }
+
+    .legal-intro h2 { font-size: 30px; }
+
+    .legal-intro p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .legal-document {
+      scroll-margin-top: 115px;
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .legal-document > summary {
+      padding: 20px 24px;
+      font-size: 16px;
+      background: var(--soft);
+    }
+
+    .document-content {
+      max-width: 850px;
+      padding: 28px;
+    }
+
+    .document-content h3 {
+      font-size: 19px;
+      line-height: 1.4;
+      letter-spacing: -.015em;
+      margin: 27px 0 12px;
+    }
+
+    .document-content p,
+    .document-content li {
+      color: #475268;
+      font-size: 14px;
+    }
+
+    .document-content ul { padding-left: 22px; }
+
+    .document-content a {
+      color: var(--blue);
+      overflow-wrap: anywhere;
+    }
+
+    .document-meta {
+      font-size: 12px !important;
+      color: var(--muted) !important;
+    }
+
+    .draft-notice {
+      padding: 17px 19px;
+      background: #fff7e7;
+      border: 1px solid #f0dcaf;
+      border-radius: 12px;
+      color: #73551f !important;
+      font-size: 13px !important;
+    }
+
+    .pending {
+      padding: 13px 16px;
+      border-left: 3px solid #c69742;
+      background: #fffaf0;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding-block: 34px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 35px;
+    }
+
+    .footer-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 12px 23px;
+      max-width: 600px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: var(--blue); }
+
+    .footer-bottom {
+      margin-top: 30px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid { gap: 30px; }
+      .hero-photo { height: 440px; }
+      .categories { grid-template-columns: repeat(2, 1fr); }
+      .app-grid { gap: 45px; }
+      .faq-grid { gap: 35px; }
+      .professional { padding: 34px; }
+    }
+
+    @media (max-width: 700px) {
+      .container { width: calc(100% - 36px); }
+
+      .header-inner {
+        padding-block: 14px;
+        min-height: auto;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .brand-letters { font-size: 29px; }
+      .brand-house { width: 29px; height: 29px; }
+
+      .nav {
+        justify-content: flex-end;
+        gap: 8px 16px;
+      }
+
+      .nav a { font-size: 12px; }
+      .nav .nav-contact { padding: 5px 10px; }
+
+      .hero { padding: 45px 0 50px; }
+
+      .hero-grid,
+      .app-grid,
+      .faq-grid,
+      .professional {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid { gap: 38px; }
+      h1 { font-size: clamp(42px, 9vw, 58px); }
+      .lead { font-size: 16px; }
+
+      .hero-visual { padding: 0 18px 25px 0; }
+      .hero-photo { height: 380px; }
+
+      .principles-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .section { padding-block: 58px; }
+      .steps { grid-template-columns: 1fr; }
+      .step { padding: 25px; }
+      .step-number { margin-bottom: 18px; }
+
+      .app-grid { gap: 35px; }
+      .phone-stage { order: 2; }
+
+      .professional { padding: 29px; gap: 20px; }
+      .faq-grid { gap: 28px; }
+
+      .contact-box {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .contact-email {
+        font-size: 17px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+      }
+
+      .footer-top { flex-direction: column; }
+      .footer-links { justify-content: flex-start; }
+      .document-content { padding: 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+
+    @media print {
+      .header, .hero, .principles,
+      .section, .footer, .skip-link {
+        display: none;
+      }
+
+      .legal-area { border: 0; padding: 0; }
+      .container { width: 100%; }
+      .legal-document { break-inside: avoid; }
+      a { color: black !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#continut">Mergi la conținut</a>
+
+  <!-- Geometria originală CASA, reutilizată din marca aplicației. -->
+  <svg class="svg-library" xmlns="http://www.w3.org/2000/svg"
+       aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="casa-house" viewBox="0 0 100 100">
+        <rect x="77" y="13" width="9" height="22" rx="2"
+              fill="currentColor"/>
+
+        <path d="M6 43 L47 7 Q50 4 53 7 L94 43"
+              fill="none" stroke="currentColor" stroke-width="8"
+              stroke-linecap="round" stroke-linejoin="round"/>
+
+        <path d="M19 48 L50 21 L81 48 V88
+                 Q81 94 75 94 H25 Q19 94 19 88 Z
+                 M41 65 H59 Q60 65 60 66 V86
+                 Q60 87 59 87 H41 Q40 87 40 86 V66
+                 Q40 65 41 65 Z"
+              fill="currentColor" fill-rule="evenodd"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#acasa" aria-label="CASA — Acasă">
+        <span class="brand-letters" aria-hidden="true">CAS</span>
+        <svg class="brand-house" aria-hidden="true" focusable="false">
+          <use href="#casa-house"/>
+        </svg>
+      </a>
+
+      <nav class="nav" aria-label="Navigare principală">
+        <a href="#cum-functioneaza">Cum funcționează</a>
+        <a href="#profesionisti">Pentru profesioniști</a>
+        <a href="#suport" class="nav-contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="continut">
+    <section class="hero" id="acasa" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Servicii pentru casa ta</span>
+
+          <h1 id="hero-title">
+            Casa ta.<br>
+            Oamenii <em>potriviți.</em>
+          </h1>
+
+          <p class="lead">
+            De la o reparație la un proiect nou, CASA este concepută
+            să te ajute să descoperi profesioniști din zona ta și
+            să discuți direct cu ei.
+          </p>
+
+          <div class="actions">
+            <a class="button button-primary" href="#cum-functioneaza">
+              Descoperă CASA <span aria-hidden="true">↗</span>
+            </a>
+
+            <a class="button button-secondary" href="#profesionisti">
+              Oferi servicii?
+            </a>
+          </div>
+
+          <!-- Înlocuiește acest text și adaugă linkul App Store
+               numai după disponibilitatea publică a aplicației. -->
+          <p class="availability">
+            Aplicație pentru iPhone · În pregătire pentru lansare
+          </p>
+        </div>
+
+        <div class="hero-visual">
+          <img class="hero-photo"
+               src="assets/hero.png"
+               alt="Un interior luminos și o atmosferă relaxată acasă"
+               width="1536" height="1024"
+               fetchpriority="high">
+
+          <span class="photo-note">Imagine ilustrativă</span>
+
+          <div class="visual-card">
+            <svg class="visual-icon" aria-hidden="true" focusable="false">
+              <use href="#casa-house"/>
+            </svg>
+            <div>
+              <strong>Mai simplu, de la început.</strong>
+              <span>Descoperă. Compară. Discută direct.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="principles">
+      <div class="container principles-grid">
+        <div class="principle">
+          <strong>În zona care te interesează</strong>
+          <span>Alegi localitatea potrivită pentru proiectul tău.</span>
+        </div>
+
+        <div class="principle">
+          <strong>Informații într-un singur loc</strong>
+          <span>Servicii, prezentare și disponibilitate declarată.</span>
+        </div>
+
+        <div class="principle">
+          <strong>Discuți direct</strong>
+          <span>Stabilești detaliile lucrării cu profesionistul.</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="cum-functioneaza"
+             aria-labelledby="steps-title">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">De la idee la primul contact</span>
+          <h2 id="steps-title">Mai puțini pași.<br>Mai multă claritate.</h2>
+          <p>
+            CASA aduce căutarea și comunicarea într-o experiență
+            gândită pentru lucrurile de care casa ta are nevoie.
+          </p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <span class="step-number" aria-hidden="true">01</span>
+            <h3>Alegi serviciul</h3>
+            <p>
+              Selectezi categoria și localitatea în care cauți ajutor.
+              Poți alege zona manual.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number" aria-hidden="true">02</span>
+            <h3>Explorezi profilurile</h3>
+            <p>
+              Consulți informațiile disponibile despre servicii,
+              zona de lucru și experiența declarată.
+            </p>
+          </article>
+
+          <article class="step">
+            <span class="step-number" aria-hidden="true">03</span>
+            <h3>Discuți detaliile</h3>
+            <p>
+              Contactezi profesionistul și stabilești direct
+              oferta, programarea și condițiile lucrării.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section categories-section"
+             aria-labelledby="categories-title">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">Pentru proiectele de acasă</span>
+          <h2 id="categories-title">De ce are nevoie casa ta?</h2>
+          <p>
+            De la întreținerea de zi cu zi la amenajări,
+            pornești de la serviciul care te interesează.
+          </p>
+        </div>
+
+        <div class="categories">
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Instalații sanitare</strong>
+            <span>Reparații și întreținere</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Electricitate</strong>
+            <span>Instalații și intervenții</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Curățenie</strong>
+            <span>Îngrijirea spațiului tău</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Zugrăveli</strong>
+            <span>Finisaje și reîmprospătare</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Climatizare</strong>
+            <span>Confort în orice sezon</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Mobilier și montaj</strong>
+            <span>Asamblare și amenajare</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Grădinărit</strong>
+            <span>Îngrijirea spațiilor verzi</span>
+          </div>
+
+          <div class="category">
+            <i class="category-mark" aria-hidden="true"></i>
+            <strong>Renovări</strong>
+            <span>Proiecte pentru locuință</span>
+          </div>
+        </div>
+
+        <p class="small-note">
+          Exemple de categorii. Disponibilitatea efectivă depinde
+          de localitate și de profilurile publicate în aplicație.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="app-title">
+      <div class="container app-grid">
+        <div class="phone-stage">
+          <div class="phone">
+            <img src="assets/aplicatie.png"
+                 alt="Previzualizare a interfeței aplicației CASA"
+                 loading="lazy">
+          </div>
+          <span class="phone-caption">
+            Previzualizare a interfeței. Datele prezentate sunt illustrative.
+          </span>
+        </div>
+
+        <div>
+          <span class="eyebrow">Gândită pentru iPhone</span>
+          <h2 id="app-title" style="margin-top:20px">
+            Proiectele tale,<br>mai bine organizate.
+          </h2>
+
+          <p class="lead">
+            O experiență simplă pentru a explora opțiuni,
+            a păstra profilurile care te interesează și
+            a continua conversația.
+          </p>
+
+          <ul class="feature-list">
+            <li>
+              <div>
+                <strong>Descoperire după localitate</strong>
+                <span>Alegi zona relevantă pentru lucrarea ta.</span>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <strong>Profiluri de prezentare</strong>
+                <span>Consulți serviciile și informațiile publicate.</span>
+              </div>
+            </li>
+
+            <li>
+              <div>
+                <strong>Favorite și conversații</strong>
+                <span>
+                  Funcțiile contului te ajută să păstrezi
+                  legătura cu profesioniștii.
+                </span>
+              </div>
+            </li>
+          </ul>
+
+          <p class="small-note">
+            Imaginile prezintă produsul aflat în dezvoltare.
+            Funcțiile disponibile la lansare vor fi descrise
+            în pagina oficială din App Store.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profesionisti"
+             aria-labelledby="professional-title"
+             style="padding-top:0">
+      <div class="container">
+        <div class="professional">
+          <div>
+            <span class="eyebrow">Pentru cei care oferă servicii</span>
+            <h2 id="professional-title">
+              Munca ta merită<br>o prezentare clară.
+            </h2>
+            <p>
+              CASA este concepută pentru profesioniști care vor
+              să își prezinte serviciile și să fie descoperiți
+              în zona în care lucrează.
+            </p>
+
+            <a class="button"
+               href="mailto:tavistudio@yahoo.com?subject=CASA%20-%20Profil%20profesional">
+              Discută cu echipa CASA
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="professional-aside">
+            <h3>Informații relevante.<br>Așteptări clare.</h3>
+            <p>
+              Publicarea unui profil este supusă condițiilor
+              aplicabile în platformă. Confirmarea contactului
+              sau plata unui abonament nu reprezintă
+              certificarea competenței profesionale.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <div class="container faq-grid">
+        <div>
+          <span class="eyebrow">Întrebări frecvente</span>
+          <h2 id="faq-title" style="margin-top:20px">
+            E bine să știi<br>de la început.
+          </h2>
+        </div>
+
+        <div>
+          <details class="faq-item">
+            <summary>Ce este CASA?</summary>
+            <p>
+              CASA este o platformă pentru descoperirea și
+              contactarea profesioniștilor care oferă servicii
+              pentru locuință. Lucrările sunt executate de
+              profesioniștii aleși, nu de CASA.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Cine stabilește prețul unei lucrări?</summary>
+            <p>
+              Clientul și profesionistul stabilesc direct
+              oferta, programarea, plata, garanțiile și
+              condițiile lucrării.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Am nevoie de telefon pentru contul de client?</summary>
+            <p>
+              Fluxul contului de client nu solicită confirmare
+              prin SMS. Confirmarea telefonului este destinată
+              fluxului profesional, în condițiile afișate
+              în aplicație.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>CASA garantează calitatea lucrărilor?</summary>
+            <p>
+              Profilurile, confirmarea contactului și recenziile
+              nu constituie o garanție asupra unei lucrări.
+              Cere o ofertă clară și verifică autorizațiile
+              necesare activității solicitate.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Cum raportez o problemă?</summary>
+            <p>
+              Poți folosi funcțiile de raportare disponibile
+              în aplicație sau ne poți scrie la
+              <a href="mailto:tavistudio@yahoo.com">
+                tavistudio@yahoo.com
+              </a>.
+              Include informațiile relevante și evită
+              transmiterea parolelor sau a codurilor SMS.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Unde găsesc informațiile despre datele mele?</summary>
+            <p>
+              Consultă
+              <a href="#confidentialitate">politica de confidențialitate</a>
+              și secțiunea despre
+              <a href="#stergere-cont">ștergerea contului</a>.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="suport"
+             aria-labelledby="support-title">
+      <div class="container contact-box">
+        <div>
+          <span class="eyebrow">Suport CASA</span>
+          <h2 id="support-title" style="margin-top:18px">
+            Suntem aici pentru întrebările tale.
+          </h2>
+          <p>
+            Pentru suport, probleme legate de cont, raportarea
+            unui conținut sau solicitări privind datele personale,
+            contactează echipa CASA.
+          </p>
+        </div>
+
+        <a class="contact-email" href="mailto:tavistudio@yahoo.com">
+          tavistudio@yahoo.com
+        </a>
+      </div>
+    </section>
+
+    <section class="legal-area" aria-labelledby="legal-title">
+      <div class="container">
+        <div class="legal-intro">
+          <h2 id="legal-title">Informații și documente</h2>
+          <p>
+            Consultă informațiile despre utilizarea platformei,
+            confidențialitate și administrarea contului.
+          </p>
+        </div>
+
+        <!--
+          DOCUMENTE ÎN DRAFT.
+          Nu folosi această versiune ca politică finală în aplicație
+          sau App Store Connect înainte de completare și validare.
+        -->
+
+        <details class="legal-document" id="confidentialitate">
+          <summary>Politica de confidențialitate</summary>
+
+          <div class="document-content">
+            <p class="document-meta">
+              Draft pentru revizuire · 5 octombrie 2026
+            </p>
+
+            <p class="draft-notice">
+              Acest document descrie configurația cunoscută a
+              proiectului CASA. Identitatea legală a operatorului,
+              temeiurile, destinatarii, transferurile și
+              perioadele de păstrare trebuie finalizate înainte
+              de folosirea documentului ca politică oficială.
+            </p>
+
+            <h3>1. Operatorul și contactul</h3>
+            <p>
+              CASA este denumirea aplicației și a serviciului.
+              Pentru întrebări privind datele personale:
+              <a href="mailto:tavistudio@yahoo.com">
+                tavistudio@yahoo.com
+              </a>.
+            </p>
+            <p class="pending">
+              De completat înainte de publicare:
+              identitatea legală și datele de contact obligatorii
+              ale operatorului. Denumirea CASA nu înlocuiește
+              identificarea persoanei sau entității responsabile.
+            </p>
+
+            <h3>2. Datele contului</h3>
+            <p>
+              Funcțiile contului pot prelucra emailul,
+              identificatorul de autentificare, numele public,
+              metoda de conectare, starea confirmării și
+              evidența acceptării Termenilor.
+              Aceste informații sunt folosite pentru acces,
+              administrarea contului și protejarea serviciului.
+            </p>
+            <p>
+              Autentificarea este gestionată prin serviciile
+              Firebase și furnizorii activați în aplicație.
+              Parolele conturilor email nu sunt stocate
+              în baza de date CASA. Sesiunea de pe iPhone
+              este păstrată în Keychain.
+            </p>
+            <p>
+              Contul de client nu solicită un număr de telefon
+              în fluxul de înregistrare.
+            </p>
+
+            <h3>3. Datele profesioniștilor</h3>
+            <p>
+              Dacă alegi să oferi servicii, profilul poate
+              include numele public sau denumirea firmei,
+              descrierea, categoriile, localitatea,
+              zona de lucru, disponibilitatea declarată
+              și imaginile de prezentare.
+            </p>
+            <p>
+              Datele administrative necesare evaluării unei
+              entități sau a dreptului de reprezentare sunt
+              distincte de informațiile publice ale profilului.
+              Datele private nu sunt publicate ca documente
+              în catalog.
+            </p>
+
+            <h3>4. Confirmarea telefonului</h3>
+            <p>
+              Fluxul profesional poate solicita confirmarea
+              numărului prin SMS. Firebase gestionează
+              livrarea și validarea codului. CASA utilizează
+              numărul și informațiile tehnice necesare
+              confirmării și prevenirii abuzurilor.
+            </p>
+            <p>
+              Numerele transmise serviciului de autentificare
+              pot fi folosite de Google pentru prevenirea
+              spamului și abuzului în serviciile sale.
+              Informarea din fluxul SMS trebuie consultată
+              înainte de continuare.
+            </p>
+            <p>
+              Confirmarea numărului nu constituie verificarea
+              identității civile sau certificarea competenței.
+              Codurile SMS nu sunt informații publice.
+            </p>
+
+            <h3>5. Localitate, mesaje și conținut</h3>
+            <p>
+              Localitatea poate fi aleasă manual.
+              Accesul la poziția dispozitivului este solicitat
+              contextual, prin permisiunea sistemului.
+              Informațiile geografice publice ale profilului
+              sunt distincte de datele private ale contului.
+            </p>
+            <p>
+              Mesajele, favoritele, blocările, recenziile
+              și raportările sunt prelucrate când folosești
+              funcțiile respective. Numele public și conținutul
+              unei recenzii pot fi afișate în contextul
+              prevăzut de aplicație.
+            </p>
+            <p>
+              Nu transmite parole, coduri de autentificare
+              sau documente de identitate în chat,
+              recenzii ori profilul public.
+            </p>
+
+            <h3>6. Securitate și furnizori</h3>
+            <p>
+              Infrastructura actuală folosește Google Firebase.
+              API-ul și baza Firestore sunt configurate
+              în regiunea europe-west1, Belgia.
+              Această alegere nu înseamnă că toate
+              operațiunile tuturor furnizorilor se desfășoară
+              exclusiv în Belgia.
+            </p>
+            <p>
+              Firebase App Check și Apple App Attest sunt
+              folosite pentru protejarea cererilor aplicației.
+              Aceste mecanisme nu verifică identitatea
+              civilă a utilizatorului.
+            </p>
+            <p>
+              Jurnalele și mecanismele anti-abuz pot prelucra
+              informații tehnice despre cereri.
+              Lista finală a furnizorilor, rolurile lor și
+              garanțiile transferurilor internaționale
+              trebuie reconciliate cu serviciile efectiv activate.
+            </p>
+            <p>
+              Informații despre furnizori:
+              <a href="https://firebase.google.com/support/privacy">
+                Firebase
+              </a>,
+              <a href="https://policies.google.com/privacy">
+                Google
+              </a>
+              și
+              <a href="https://www.apple.com/legal/privacy/">
+                Apple
+              </a>.
+            </p>
+
+            <h3>7. Scopuri și temeiuri</h3>
+            <p>
+              Prelucrările trebuie limitate la furnizarea
+              funcțiilor solicitate, administrarea contului,
+              securitate, moderare și obligațiile legale
+              efectiv aplicabile.
+            </p>
+            <p class="pending">
+              De finalizat: asocierea fiecărei prelucrări
+              cu temeiul juridic aplicabil și, unde este cazul,
+              evaluarea interesului legitim sau mecanismul
+              de consimțământ. Permisiunile iOS nu reprezintă
+              un acord general pentru orice prelucrare.
+            </p>
+
+            <h3>8. Păstrarea și ștergerea datelor</h3>
+            <p class="pending">
+              Perioadele de păstrare pentru conturi,
+              mesaje, recenzii, raportări, dovezi tehnice
+              și jurnale nu sunt încă aprobate.
+              Procedura completă de ștergere, inclusiv
+              la furnizori și în copiile de siguranță,
+              trebuie finalizată înainte de lansarea publică.
+            </p>
+            <p>
+              Înregistrarea unei cereri de ștergere
+              nu trebuie prezentată ca ștergere deja executată.
+              Orice păstrare necesară trebuie justificată
+              și comunicată în politica finală.
+            </p>
+
+            <h3>9. Drepturile tale</h3>
+            <p>
+              În condițiile legislației aplicabile,
+              poți solicita acces, rectificare, ștergere,
+              restricționarea prelucrării și portabilitate.
+              Te poți opune anumitor prelucrări și poți
+              retrage consimțământul atunci când acesta
+              este temeiul folosit.
+            </p>
+            <p>
+              Trimite solicitarea la
+              <a href="mailto:tavistudio@yahoo.com?subject=CASA%20-%20Date%20personale">
+                tavistudio@yahoo.com
+              </a>.
+              Pentru protejarea contului poate fi necesară
+              verificarea proporțională a titularului.
+            </p>
+            <p>
+              Poți depune o plângere la
+              <a href="https://www.dataprotection.ro/">
+                Autoritatea Națională de Supraveghere
+                a Prelucrării Datelor cu Caracter Personal
+              </a>.
+            </p>
+
+            <h3>10. Site-ul și actualizările politicii</h3>
+            <p>
+              Codul acestei pagini nu include instrumente
+              de publicitate, analytics, formulare de colectare
+              sau stocare în browser. Furnizorul de găzduire
+              poate procesa date tehnice ale accesărilor;
+              acestea trebuie descrise după alegerea găzduirii.
+            </p>
+            <p>
+              Versiunea finală a politicii va indica data
+              intrării în vigoare și va fi accesibilă
+              din aplicație și de pe site.
+            </p>
+          </div>
+        </details>
+
+        <details class="legal-document" id="termeni">
+          <summary>Termeni și condiții</summary>
+
+          <div class="document-content">
+            <p class="document-meta">
+              Draft pentru revizuire · 5 octombrie 2026
+            </p>
+
+            <p class="draft-notice">
+              Acești Termeni sunt o propunere de lucru.
+              Datele operatorului, condițiile comerciale
+              și procedurile de moderare și ștergere
+              trebuie finalizate înainte de acceptarea
+              documentului în aplicație.
+            </p>
+
+            <h3>1. Serviciul CASA</h3>
+            <p>
+              CASA facilitează descoperirea și contactarea
+              profesioniștilor care oferă servicii pentru locuință.
+              Profesioniștii execută lucrările în nume propriu
+              sau în numele entității pe care o reprezintă.
+            </p>
+            <p class="pending">
+              De completat: identitatea legală și informațiile
+              obligatorii ale operatorului serviciului.
+              Contact: tavistudio@yahoo.com.
+            </p>
+
+            <h3>2. Contul și eligibilitatea</h3>
+            <p>
+              Crearea contului este destinată persoanelor
+              care declară că au cel puțin 18 ani.
+              Utilizatorul furnizează informații corecte,
+              își protejează accesul și acceptă versiunea
+              aplicabilă a Termenilor.
+            </p>
+            <p>
+              Metodele de autentificare sunt cele activate
+              în aplicație. Autentificarea printr-un furnizor
+              extern nu înlocuiește acceptarea Termenilor CASA.
+            </p>
+
+            <h3>3. Profilurile profesionale</h3>
+            <p>
+              Profesionistul este responsabil pentru
+              exactitatea informațiilor, legalitatea
+              activității, autorizațiile necesare
+              și dreptul de utilizare a imaginilor publicate.
+            </p>
+            <p>
+              Publicarea este supusă condițiilor afișate
+              în platformă, inclusiv confirmarea contactului
+              și evaluările interne aplicabile.
+              Confirmarea unui telefon, existența profilului,
+              ratingul sau plata abonamentului nu constituie
+              certificarea competenței ori o garanție
+              asupra unei lucrări.
+            </p>
+
+            <h3>4. Ofertele și lucrările</h3>
+            <p>
+              Clientul și profesionistul stabilesc direct
+              obiectul lucrării, prețul, programarea,
+              plata, documentele și garanțiile aplicabile.
+              Recomandăm consemnarea clară a condițiilor
+              convenite înainte de începerea lucrării.
+            </p>
+            <p>
+              CASA nu execută lucrările și nu substituie
+              obligațiile profesionistului.
+              Această precizare nu exclude răspunderea
+              legală a operatorului și nu limitează
+              drepturile obligatorii ale utilizatorilor.
+            </p>
+
+            <h3>5. Conținutul și conduita</h3>
+            <p>
+              Nu sunt permise conținutul ilegal,
+              informațiile înșelătoare, impersonarea,
+              amenințările, hărțuirea, spamul sau divulgarea
+              neautorizată a datelor altor persoane.
+            </p>
+            <p>
+              Recenziile trebuie să reflecte experiența
+              declarată și să respecte criteriile afișate
+              în aplicație. Utilizatorul trebuie să dețină
+              drepturile necesare pentru conținutul publicat.
+            </p>
+
+            <h3>6. Raportări și moderare</h3>
+            <p>
+              Problemele pot fi raportate prin funcțiile
+              disponibile în aplicație sau la
+              <a href="mailto:tavistudio@yahoo.com?subject=CASA%20-%20Raportare">
+                tavistudio@yahoo.com
+              </a>.
+              Identifică profilul sau conținutul vizat
+              și descrie motivul sesizării.
+            </p>
+            <p>
+              Conținutul sau accesul poate fi restricționat
+              când încalcă regulile aplicabile.
+              O solicitare de reevaluare poate fi trimisă
+              la același contact.
+            </p>
+            <p class="pending">
+              Procedura finală trebuie să precizeze
+              evaluarea sesizărilor, comunicarea deciziilor
+              și posibilitatea de contestare,
+              potrivit obligațiilor aplicabile serviciului.
+            </p>
+
+            <h3>7. Abonamente</h3>
+            <p>
+              Dacă sunt disponibile abonamente profesionale,
+              prețul, durata, reînnoirea și eventualele
+              condiții introductive sunt afișate
+              înainte de cumpărare.
+            </p>
+            <p>
+              Pentru achizițiile gestionate de Apple,
+              administrarea și anularea reînnoirii se fac
+              prin contul Apple. Ștergerea contului CASA
+              nu anulează automat un abonament Apple.
+              Condițiile efectiv afișate la cumpărare
+              trebuie consultate înainte de confirmare.
+            </p>
+
+            <h3>8. Datele personale și închiderea contului</h3>
+            <p>
+              Prelucrarea datelor este descrisă în
+              <a href="#confidentialitate">
+                politica de confidențialitate
+              </a>.
+              Informațiile despre cererile de ștergere
+              sunt disponibile în
+              <a href="#stergere-cont">
+                secțiunea dedicată contului
+              </a>.
+            </p>
+
+            <h3>9. Drepturi și actualizări</h3>
+            <p>
+              Se păstrează drepturile prevăzute de legislația
+              aplicabilă, inclusiv drepturile obligatorii
+              ale consumatorilor.
+              Modificările relevante ale Termenilor
+              vor fi comunicate în condițiile aplicabile.
+            </p>
+            <p>
+              Pentru întrebări sau reclamații:
+              <a href="mailto:tavistudio@yahoo.com">
+                tavistudio@yahoo.com
+              </a>.
+            </p>
+          </div>
+        </details>
+
+        <details class="legal-document" id="stergere-cont">
+          <summary>Ștergerea contului și solicitări privind datele</summary>
+
+          <div class="document-content">
+            <p class="draft-notice">
+              Procedura completă de ștergere este în curs
+              de finalizare. Această pagină nu înlocuiește
+              funcția de inițiere a ștergerii din aplicație.
+            </p>
+
+            <h3>Contact pentru solicitări</h3>
+            <p>
+              Pentru întrebări privind închiderea contului
+              sau exercitarea drepturilor asupra datelor,
+              scrie la
+              <a href="mailto:tavistudio@yahoo.com?subject=CASA%20-%20Solicitare%20privind%20contul">
+                tavistudio@yahoo.com
+              </a>.
+            </p>
+
+            <h3>Ce informații să trimiți</h3>
+            <p>
+              Indică emailul asociat contului și tipul
+              solicitării. Nu trimite parola, coduri SMS,
+              date de card sau copii ale actelor de identitate
+              din proprie inițiativă.
+            </p>
+
+            <h3>Verificarea titularului</h3>
+            <p>
+              Protejarea datelor poate necesita confirmarea
+              că solicitarea provine de la titular.
+              Confirmarea se realizează proporțional,
+              prin mecanismele aplicabile contului.
+            </p>
+
+            <h3>Abonamentele Apple</h3>
+            <p>
+              O cerere de ștergere a contului CASA nu anulează
+              automat reînnoirea unui abonament Apple.
+              Gestionează separat abonamentul din
+              configurările contului Apple.
+            </p>
+            <p>
+              <a href="https://support.apple.com/118428">
+                Instrucțiunile Apple pentru anularea abonamentelor
+              </a>
+            </p>
+
+            <h3>Finalizarea procedurii</h3>
+            <p class="pending">
+              Înainte de lansare trebuie definite și verificate:
+              datele șterse, păstrările justificate,
+              perioadele aplicabile, ștergerea la furnizori
+              și confirmarea finalizării către utilizator.
+            </p>
+          </div>
+        </details>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="#acasa" aria-label="CASA — Acasă">
+            <span class="brand-letters" aria-hidden="true">CAS</span>
+            <svg class="brand-house" aria-hidden="true" focusable="false">
+              <use href="#casa-house"/>
+            </svg>
+          </a>
+          <p class="footer-description">Servicii pentru casa ta.</p>
+        </div>
+
+        <nav class="footer-links" aria-label="Informații și suport">
+          <a href="#suport">Suport</a>
+          <a href="#confidentialitate">Confidențialitate</a>
+          <a href="#termeni">Termeni și condiții</a>
+          <a href="#stergere-cont">Ștergerea contului</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        © <span id="year">2026</span> CASA.
+        Imaginile de prezentare sunt illustrative.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nu folosește cookies, analytics sau stocare în browser.
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // Linkurile directe deschid automat documentul juridic:
+    // index.html#confidentialitate
+    // index.html#termeni
+    // index.html#stergere-cont
+    function openLinkedDocument() {
+      let id;
+
+      try {
+        id = decodeURIComponent(window.location.hash.slice(1));
+      } catch {
+        return;
+      }
+
+      if (!id) return;
+
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      const documentPanel = target.closest("details");
+
+      if (documentPanel) {
+        documentPanel.open = true;
+
+        requestAnimationFrame(() => {
+          target.scrollIntoView({ block: "start" });
+        });
+      }
+    }
+
+    window.addEventListener("hashchange", openLinkedDocument);
+    openLinkedDocument();
+
+    // Păstrează funcționale inclusiv clickurile repetate
+    // către aceeași secțiune juridică.
+    document.addEventListener("click", event => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link) return;
+
+      const hash = link.getAttribute("href");
+      if (hash === window.location.hash) {
+        openLinkedDocument();
+      }
+    });
+
+    // Include documentele în imprimare, apoi restaurează starea.
+    let printStates = [];
+
+    window.addEventListener("beforeprint", () => {
+      printStates = Array.from(
+        document.querySelectorAll(".legal-document")
+      ).map(panel => ({ panel, open: panel.open }));
+
+      printStates.forEach(({ panel }) => {
+        panel.open = true;
+      });
+    });
+
+    window.addEventListener("afterprint", () => {
+      printStates.forEach(({ panel, open }) => {
+        panel.open = open;
+      });
+    });
+  </script>
+</body>
+</html>
