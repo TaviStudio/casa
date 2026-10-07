@@ -1,0 +1,24 @@
+{
+  "documents": [
+    {
+      "version": "casa-2026-10-07-1",
+      "url": "https://tavistudio.github.io/casa/legal/casa-2026-10-07-1.html",
+      "sha256": "d1532f25820600ef72eef2ffdf0f96990d4f078342bc1146ddc20fe38cb3a944"
+    },
+    {
+      "version": "privacy-2026-10-07-2",
+      "url": "https://tavistudio.github.io/casa/legal/privacy-2026-10-07-2.html",
+      "sha256": "8f43dd7f835c2277f840e935f0a3fbd070c59b78673ba2cd1efe3434484de123"
+    },
+    {
+      "version": "privacy-2026-10-08-1",
+      "url": "https://tavistudio.github.io/casa/legal/privacy-2026-10-08-1.html",
+      "sha256": "46a11ff9b5e6b264c7fe11091386eef20a78005697d13c44a399990cda7d9832"
+    },
+    {
+      "version": "provider-2026-10-07-1",
+      "url": "https://tavistudio.github.io/casa/legal/provider-2026-10-07-1.html",
+      "sha256": "48785089c0f2efed6caaeedf6cfd4a6d3699e00155be605605f04c57ef3adf65"
+    }
+  ]
+}
